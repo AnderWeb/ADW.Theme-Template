@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="x.x.x"
+      android:versionCode="1"
+      android:versionName="1.0"
+      android:installLocation="internalOnly">
+    <application android:label="@string/theme_title" android:icon="@drawable/theme_icon">
+        <activity android:name=".main"
+                  android:label="@string/theme_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="org.adw.launcher.THEMES" />
+                <category android:name="android.intent.category.DEFAULT" />                
+            </intent-filter>
+            <intent-filter>
+                <action android:name="org.adw.launcher.icons.ACTION_PICK_ICON" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>              
+        </activity>
+    </application>
+	<uses-sdk android:minSdkVersion="4"/>
+
+</manifest> 
