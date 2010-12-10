@@ -12,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapFactory.Options;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -77,8 +79,9 @@ public class main extends Activity implements OnItemClickListener {
 
 		@Override
 		public Object getItem(int position) {
-			//return mThumbIds[position];
-			return ((BitmapDrawable)mContext.getResources().getDrawable(mThumbs.get(position))).getBitmap();
+		    Options opts=new BitmapFactory.Options();
+		    opts.inPreferredConfig=Bitmap.Config.ARGB_8888;
+		    return BitmapFactory.decodeResource(mContext.getResources(), mThumbs.get(position), opts);
 		}
 
 		@Override
