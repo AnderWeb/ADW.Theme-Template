@@ -17,6 +17,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>              
         </activity>
+        <activity
+            android:name=".docks"
+            android:label="@string/theme_title"
+            android:icon="@drawable/theme_icon">
+            <intent-filter>
+                <action android:name="android.intent.action.PICK" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+        </activity>
+        <provider android:name=".docksProvider"  android:authorities="x.x.x.docksProvider" />
     </application>
 	<uses-sdk android:minSdkVersion="4"/>
 
