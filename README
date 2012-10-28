@@ -1,4 +1,4 @@
-ADW.Launcher Theme Template v0.3
+ADW.Launcher Theme Template v0.5
 #################################################
 
 License:
@@ -11,64 +11,4 @@ License:
 
 Usage instructions:
 -------------------------------------------------
-1.-Load the template into eclipse:
-	1.a-On eclipse, select new android project
-	1.b-On the new project screen, select "Project from existing source" and select the theme template dir.
-	1.c-Click finish. 
-
-2.-Modify the app packagename and path (you should change if from x.x.x to your.package.name)
-	2.a-On eclipse, look into your project explorer, rightclick the x.x.x package and select "Refactor->Rename..." and follow the instructions.
-	2.b-Once refactor is finished, look for lines similar to "import x.x.x.R" inside the java files and delete them.
-
-3.-Editing the AndroidManifest.xml:
-	3.a-EDIT ONLY the packagename AND versioncode/versionname to suit your needs.
-	3.b-If you remove/change the installLocation param, your theme could not be loaded on boot on froyo phones.
-	3.c-If you remove/change the "org.adw.launcher.THEMES" intent filter and/or the "android.intent.category.DEFAULT" category, your theme won't be visible to ADW.Launcher users.
-	3.d-This template is preconfigured to NOT show on the application drawer so users don't get bloated with theme icons on their app drawers.
-	3.e-Search the line "<provider android:name........"x.x.x.docksProvider" /> and change the "x.x.x" to the packagename from step 2.
-
-4.-Edit the res/values/theme_config.xml to your needs.
-
-5.-Edit the different drawables in there.
-
-6.-You can add CUSTOM ICONS putting them inside the proper drawable directory following this name conventions:
-	6.a: LowercaseActivityNameWithUnderscoresInsteadDots.png
-	6.b example: "com_android_camera_camera.png" for camera activity (com.android.camera.Camera)
-	6.c ecample2: "com_android_browser_browseractivity.png" for internet browser activity (com.android.browser.BrowserActivity)
-
-7.-Rename res/xml/noShader.xml to shader.xml to enable icon shading. See the file for instructions on writing a shader.
-
-8.-To put icons in the ADW Icon pack to be used in ADW.Launcher, just edit the res/values/icon_pack.xml file and add lines like the following one:
-        <item>png_finelane_no_extension</item>
-        One line per icon to be shown in the icon pack. Use only images, not xml drawables.
-        EXAMPLES:
-        	res/drawable/icon1.png --> <item>icon1</item>
-        	res/drawable-hdpi/my_cool_icon.png --> <item>my_cool_icon</item>
-		FULL FILE:
-			<?xml version="1.0" encoding="utf-8"?>
-			<resources>
-			    <string-array name="icon_pack" translatable="false">
-			    	<item>icon1</item>
-			    	<item>my_cool_icon</item>
-			    </string-array>
-			</resources>
-
-9.-To use a custom font on your theme, put the TTF file in assets/themefont.ttf.
-    Make sure the font is working, some BIG (in filesize) fonts or bad encoded fonts can cause problems.
-     		
-10.-To put CUSTOM DOCK IMAGES in the ADW Dock pack to be used in ADWLauncher EX, just edit the res/values/dock_pack.xml file and add lines like the following one:
-        <item>png_finelane_no_extension</item>
-        One line per dock to be shown in the dock pack. Use only IMAGES, not xml drawables.
-        EXAMPLES:
-        	res/drawable/mycooldock1.png --> <item>mycooldock1</item>
-        	res/drawable-hdpi/my_cool_dock_2.png --> <item>my_cool_dock_2</item>
-		FULL FILE:
-			<?xml version="1.0" encoding="utf-8"?>
-			<resources>
-			    <string-array name="dock_pack" translatable="false">
-			    	<item>mycooldock1</item>
-			    	<item>my_cool_dock_2</item>
-			    </string-array>
-			</resources>
-
-11.-Export the apk from eclipse as every other android app.
+The most current guide can be found at http://adwthings.com/launcher/adw-theming-guide/

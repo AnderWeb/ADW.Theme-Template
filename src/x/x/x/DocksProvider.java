@@ -1,13 +1,12 @@
 package x.x.x;
 
+import java.io.FileNotFoundException;
+
 import android.content.ContentProvider;
 import android.content.ContentValues;
-import android.content.UriMatcher;
 import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.net.Uri;
-
-import java.io.FileNotFoundException;
 
 /**
  * Created by Gustavo Claramunt.
@@ -15,7 +14,7 @@ import java.io.FileNotFoundException;
  * Date: 23/01/11
  * Time: 18:31
  */
-public class docksProvider extends ContentProvider{
+public class DocksProvider extends ContentProvider{
     @Override
     public boolean onCreate() {
         return false;

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <!-- Icon Layers 
+    <iconback img1="fondo"/>
+    <iconupon img1="brillo"/>
+    <iconmask img1="mascara"/>
+    <scale factor="1.2" />
+ 	-->
+ 	
+ 	
+    <!-- Icon Theme 
+    <item component="ComponentInfo{com.android.browser/com.android.browser.BrowserActivity}" drawable="chupahbworsah" />
+    -->
+</resources>

@@ -7,26 +7,29 @@
 package x.x.x;
 
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.Intent.ShortcutIconResource;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class main extends Activity implements OnItemClickListener {
+public class IconPack extends Activity implements OnItemClickListener {
 	private static final String ACTION_ADW_PICK_ICON="org.adw.launcher.icons.ACTION_PICK_ICON";
+	private static final String ACTION_ADW_PICK_RESOURCE="org.adw.launcher.icons.ACTION_PICK_ICON_RESOURCE";
 	private boolean mPickerMode=false;
+	private boolean mResourceMode=false;
     /** Called when the activity is first created. */
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,21 +46,34 @@ public class main extends Activity implements OnItemClickListener {
         if(getIntent().getAction().equals(ACTION_ADW_PICK_ICON)){
         	mPickerMode=true;
         }
+        if(getIntent().hasExtra(ACTION_ADW_PICK_RESOURCE)){
+        	mResourceMode=true;
+        }
         
     }
-	public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+	public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 		if(mPickerMode){
 			Intent intent=new Intent();
-			Bitmap bitmap=null;
-			try{
-				bitmap=(Bitmap) adapter.getAdapter().getItem(position);
-			}catch (Exception e) {
-			}
-			if(bitmap!=null){
-				intent.putExtra("icon",bitmap);
-				setResult(RESULT_OK, intent);
+			if(!mResourceMode){
+				Bitmap bitmap=null;
+				try{
+					bitmap=(Bitmap) adapterView.getAdapter().getItem(position);
+				}catch (Exception e) {
+				}
+				if(bitmap!=null){
+					intent.putExtra("icon",bitmap);
+					setResult(RESULT_OK, intent);
+				}else{
+					setResult(RESULT_CANCELED, intent);
+				}
 			}else{
-				setResult(RESULT_CANCELED, intent);
+				ShortcutIconResource res=((IconsAdapter)adapterView.getAdapter()).getResource(position);
+				if(res!=null){
+					intent.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, res);
+					setResult(RESULT_OK, intent);
+				}else{
+					setResult(RESULT_CANCELED, intent);
+				}
 			}
 			finish();
 		}
@@ -77,6 +93,10 @@ public class main extends Activity implements OnItemClickListener {
 			return mThumbs.size();
 		}
 
+		public ShortcutIconResource getResource(int position){
+			return ShortcutIconResource.fromContext(IconPack.this,
+                    mThumbs.get(position));
+		}
 		@Override
 		public Object getItem(int position) {
 		    Options opts=new BitmapFactory.Options();

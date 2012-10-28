@@ -6,7 +6,6 @@
     >
     <GridView android:id="@+id/icon_grid"
         android:background="#FF000000"
-        android:listSelector="@drawable/grid_selector"
     	android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
     />

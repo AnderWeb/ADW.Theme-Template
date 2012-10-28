@@ -1,5 +1,7 @@
 package x.x.x;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +10,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
-import java.util.ArrayList;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
 
 /**
  * Created by Gustavo Claramunt.
@@ -17,30 +21,45 @@ import java.util.ArrayList;
  * Date: 23/01/11
  * Time: 17:53
  */
-public class docks extends Activity implements AdapterView.OnItemClickListener{
+public class DockPack extends Activity implements AdapterView.OnItemClickListener{
+	private static final String ACTION_ADW_PICK_RESOURCE = "org.adw.launcher.docks.ACTION_PICK_RESOURCE";
+	private static final String EXTRA_ADW_RESOURCENAME = "org.adw.launcher.docks.RESOURCE_NAME";
+	private static final String EXTRA_ADW_PACKAGENAME = "org.adw.launcher.docks.PACKAGE_NAME";
+	private boolean mResourceMode=false;
+	
     public Uri CONTENT_URI;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getIntent().hasExtra(ACTION_ADW_PICK_RESOURCE)){
+        	mResourceMode=true;
+        }
         ListView lv=new ListView(this);
         lv.setAdapter(new DocksAdapter(this));
         lv.setOnItemClickListener(this);
         setContentView(lv);
-        CONTENT_URI=Uri.parse("content://"+docksProvider.class.getCanonicalName());
+        CONTENT_URI=Uri.parse("content://"+DocksProvider.class.getCanonicalName());
     }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        String dock=adapterView.getItemAtPosition(i).toString();
-        Intent result = new Intent(null, Uri.withAppendedPath(CONTENT_URI,dock));
+    	Intent result;
+    	int resourceId=(Integer)adapterView.getItemAtPosition(i);
+    	if(!mResourceMode){
+            String dock=String.valueOf(resourceId);
+            result = new Intent(null, Uri.withAppendedPath(CONTENT_URI,dock));
+    	}else{
+    		String name=getResources().getResourceName(resourceId);
+    		result = new Intent();
+    		result.putExtra(EXTRA_ADW_PACKAGENAME, getPackageName());
+    		result.putExtra(EXTRA_ADW_RESOURCENAME, name);
+    	}
         setResult(RESULT_OK, result);
         finish();
     }
     private class DocksAdapter extends BaseAdapter{
-        private Context mContext;
         public DocksAdapter(Context mContext) {
             super();
-            this.mContext = mContext;
             loadDocks();
         }
 
@@ -62,10 +81,10 @@ public class docks extends Activity implements AdapterView.OnItemClickListener{
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if(convertView==null){
-                convertView=new ImageView(docks.this);
+                convertView=new ImageView(DockPack.this);
                 convertView.setLayoutParams(new ListView.LayoutParams(ListView.LayoutParams.FILL_PARENT, ListView.LayoutParams.WRAP_CONTENT));
             }
-            ((ImageView)convertView).setImageResource(mThumbs.get(position));
+            ((ImageView)convertView).setBackgroundResource(mThumbs.get(position));
             return convertView;
         }
 
