@@ -8,6 +8,8 @@
 <string name="developerName">Your android market developer name</string>
 <string name="authorLink">http://your.web.site</string>
 <string name="theme_title">ADWTheme Template</string>
+<string name="dock_pack_title">DockPack Title</string>
+<string name="icon_pack_title">IconPack Title</string>
 <string name="theme_description"><![CDATA[This is a <b>long description</b> for the theme.<br/>
 Theme developers should put here some <u>info, license, and whatever</u> they want.<br/>
 Maybe they could add some <a href="http://www.google.com">links</a> too.]]></string>

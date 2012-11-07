@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="x.x.x"
-      android:versionCode="1"
-      android:versionName="1.0"
-      android:installLocation="internalOnly">
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	package="x.x.x"
+	android:versionCode="1"
+	android:versionName="1.0"
+	android:installLocation="internalOnly">
+	<uses-sdk android:minSdkVersion="4"/>
     <application android:label="@string/theme_title" android:icon="@drawable/theme_icon">
-        <activity android:name=".main"
-                  android:label="@string/theme_title">
+        <activity
+            	android:name=".IconPack"
+            	android:enabled="@bool/enableIconPack"
+				android:label="@string/icon_pack_title"
+            	android:icon="@drawable/theme_icon"
+				tools:ignore="ExportedActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <action android:name="org.adw.launcher.THEMES" />
                 <category android:name="android.intent.category.DEFAULT" />                
             </intent-filter>
@@ -18,17 +24,21 @@
             </intent-filter>              
         </activity>
         <activity
-            android:name=".docks"
-            android:label="@string/theme_title"
-            android:icon="@drawable/theme_icon">
+            android:name=".DocksPack"
+            android:enabled="@bool/enableDockPack"
+            android:label="@string/dock_pack_title"
+            android:icon="@drawable/theme_icon"
+            tools:ignore="ExportedActivity">
             <intent-filter>
                 <action android:name="android.intent.action.PICK" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="image/*" />
             </intent-filter>
         </activity>
-        <provider android:name=".docksProvider"  android:authorities="x.x.x.docksProvider" />
+        <provider 
+            android:name=".DocksProvider"
+            android:enabled="@bool/enableDockPack"  
+            android:authorities="x.x.x.DocksProvider"
+            tools:ignore="ExportedContentProvider"/>
     </application>
-	<uses-sdk android:minSdkVersion="4"/>
-
-</manifest> 
+</manifest>
