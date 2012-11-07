@@ -24,7 +24,7 @@
             </intent-filter>              
         </activity>
         <activity
-            android:name=".DocksPack"
+            android:name=".DockPack"
             android:enabled="@bool/enableDockPack"
             android:label="@string/dock_pack_title"
             android:icon="@drawable/theme_icon"
